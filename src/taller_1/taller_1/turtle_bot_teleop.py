@@ -6,6 +6,17 @@ import threading
 
 Key= None
 
+save="k"
+while save.upper()!="Y" and save.lower()!= "n":
+    save=input("Quiere guardar el archivo [Y/n] ")
+    if save.upper()!="Y" and save.lower()!= "n":
+        print("¿No sabe leer chino @!#?")
+
+if save.upper()=="Y":
+    file=open("recorrido.csv","x")
+        
+    
+
 def pulsa(tecla):
     global Key
     Key=tecla
@@ -33,6 +44,7 @@ class MinimalPublisher(Node):
         
     def callback(self):
         msg = Twist()
+        global save
         global Key
         if Key== kb.KeyCode.from_char('w'):
             msg.linear.x = self.velx
@@ -70,7 +82,12 @@ class MinimalPublisher(Node):
             msg.angular.y= 0.0
             msg.angular.z= 0.0
         self.publisher_.publish(msg)
+        if save.upper()=="Y" and Key!=None:
+            file=open("recorrido.csv","a")
+            file.write(str(msg.linear.x)+","+str(msg.angular.z)+"\n")
+            file.close()
         print(Key)
+        
        
     
         

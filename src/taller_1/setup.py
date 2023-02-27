@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'turtle_bot_teleop = taller_1.turtle_bot_teleop:main',
             'turtle_bot_interface = taller_1.turtle_bot_interface:main',
+            'player = taller_1.player:main',
         ],
     },
 )
